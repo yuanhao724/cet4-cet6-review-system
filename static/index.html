@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>四六级抗遗忘多智能体RAG复习系统</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#155eef',
+                        secondary: '#0f766e',
+                        admin: '#dc2626',
+                        student: '#16a34a',
+                        light: '#f7f9fc',
+                        dark: '#111827'
+                    },
+                    fontFamily: {
+                        sans: ['"Microsoft YaHei"', '"Segoe UI"', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer base {
+            :root {
+                --page: #f7f9fc;
+                --page-soft: #eef3fb;
+                --ink: #111827;
+                --muted: #64748b;
+                --line: rgba(15, 23, 42, 0.1);
+                --card: rgba(255, 255, 255, 0.88);
+                --accent: #155eef;
+                --accent-deep: #0f3fb8;
+            }
+
+            html {
+                scroll-behavior: smooth;
+            }
+
+            body {
+                min-height: 100dvh;
+                overflow-x: hidden;
+                background:
+                    linear-gradient(180deg, rgba(21, 94, 239, 0.08), transparent 460px),
+                    linear-gradient(135deg, #f8fafc 0%, #eef3fb 48%, #f7f9fc 100%);
+                color: var(--ink);
+                letter-spacing: 0;
+            }
+
+            button,
+            input,
+            textarea,
+            select {
+                font: inherit;
+            }
+
+            textarea,
+            input[type="text"],
+            input[type="password"],
+            select {
+                background: rgba(255, 255, 255, 0.9);
+                border-color: rgba(15, 23, 42, 0.12) !important;
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+                transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+            }
+
+            textarea:focus,
+            input[type="text"]:focus,
+            input[type="password"]:focus,
+            select:focus {
+                border-color: var(--accent) !important;
+                box-shadow: 0 0 0 4px rgba(21, 94, 239, 0.12);
+                background: #fff;
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                *,
+                *::before,
+                *::after {
+                    animation-duration: 0.01ms !important;
+                    animation-iteration-count: 1 !important;
+                    scroll-behavior: auto !important;
+                    transition-duration: 0.01ms !important;
+                }
+            }
+
+            @media (prefers-color-scheme: dark) {
+                :root {
+                    --page: #0f172a;
+                    --page-soft: #111c30;
+                    --ink: #e5edf8;
+                    --muted: #a5b4c8;
+                    --line: rgba(226, 232, 240, 0.12);
+                    --card: rgba(15, 23, 42, 0.82);
+                    --accent: #7aa2ff;
+                    --accent-deep: #9bb8ff;
+                }
+
+                body {
+                    background:
+                        linear-gradient(180deg, rgba(21, 94, 239, 0.22), transparent 420px),
+                        linear-gradient(135deg, #0f172a 0%, #111827 52%, #0b1220 100%);
+                }
+
+                textarea,
+                input[type="text"],
+                input[type="password"],
+                select {
+                    background: rgba(15, 23, 42, 0.78);
+                    color: #e5edf8;
+                }
+            }
+        }
+
+        @layer components {
+            .shell { @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8; }
+            .glass-nav {
+                border-bottom: 1px solid var(--line);
+                background: rgba(248, 250, 252, 0.82);
+                backdrop-filter: blur(18px) saturate(140%);
+                -webkit-backdrop-filter: blur(18px) saturate(140%);
+            }
+            .brand-mark {
+                @apply flex h-10 w-10 items-center justify-center rounded-2xl text-white;
+                background: linear-gradient(135deg, #155eef, #0f766e);
+                box-shadow: 0 14px 34px rgba(21, 94, 239, 0.24);
+            }
+            .surface-card {
+                border: 1px solid var(--line);
+                background: var(--card);
+                box-shadow: 0 24px 70px rgba(15, 23, 42, 0.08);
+                backdrop-filter: blur(18px);
+                -webkit-backdrop-filter: blur(18px);
+            }
+            .soft-panel {
+                border: 1px solid var(--line);
+                background: rgba(248, 250, 252, 0.72);
+            }
+            .primary-btn {
+                @apply inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold text-white;
+                background: linear-gradient(135deg, #155eef, #0f3fb8);
+                box-shadow: 0 16px 34px rgba(21, 94, 239, 0.26);
+                transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+            }
+            .primary-btn:hover { transform: translateY(-1px); filter: saturate(1.08); }
+            .primary-btn:active { transform: translateY(1px) scale(0.99); }
+            .secondary-btn {
+                @apply inline-flex items-center justify-center gap-2 rounded-2xl border px-5 py-3 font-semibold;
+                border-color: var(--line);
+                color: var(--ink);
+                background: rgba(255, 255, 255, 0.66);
+                transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+            }
+            .secondary-btn:hover { border-color: rgba(21, 94, 239, 0.32); background: rgba(255, 255, 255, 0.92); }
+            .secondary-btn:active { transform: translateY(1px) scale(0.99); }
+            .section-title { @apply text-2xl font-bold text-slate-950 md:text-3xl; }
+            .muted-copy { color: var(--muted); }
+            .result-box {
+                border: 1px dashed rgba(15, 23, 42, 0.16);
+                background: rgba(248, 250, 252, 0.76);
+            }
+            .nav-unlogin-actions { display: none; }
+            .nav-unlogin-actions.hidden { display: none !important; }
+            @media (min-width: 640px) {
+                .nav-unlogin-actions { display: flex; }
+            }
+        }
+
+        @layer utilities {
+            .content-auto { content-visibility: auto; }
+            .card-shadow { box-shadow: 0 24px 70px rgba(15, 23, 42, 0.08); }
+            .nav-shadow { box-shadow: none; }
+            .btn-hover { transition: all 0.25s ease; }
+            .btn-hover:hover { transform: translateY(-1px); box-shadow: 0 16px 34px rgba(21,94,239,0.22); }
+            .btn-hover:active { transform: translateY(1px) scale(0.99); }
+            .fade-in { animation: fadeIn 0.46s cubic-bezier(0.16, 1, 0.3, 1); }
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(14px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            @media (prefers-color-scheme: dark) {
+                .glass-nav { background: rgba(15, 23, 42, 0.78) !important; }
+                .surface-card { background: rgba(15, 23, 42, 0.82) !important; }
+                .soft-panel,
+                .result-box { background: rgba(30, 41, 59, 0.58) !important; }
+                .text-slate-950,
+                .text-slate-900,
+                .text-slate-800,
+                .text-slate-700 { color: #e5edf8 !important; }
+                .text-slate-600,
+                .text-slate-500 { color: #a5b4c8 !important; }
+                .border-slate-200,
+                .border-slate-100 { border-color: rgba(226, 232, 240, 0.12) !important; }
+                .bg-white,
+                .bg-slate-50,
+                .bg-slate-100 { background-color: rgba(15, 23, 42, 0.72) !important; }
+                .secondary-btn { background: rgba(15, 23, 42, 0.66); color: #e5edf8; }
+            }
+        }
+    </style>
+</head>
+
+<body class="font-sans text-dark">
+    <!-- 顶部导航栏 -->
+    <header class="glass-nav sticky top-0 z-50">
+        <div class="shell flex h-[72px] items-center justify-between gap-4">
+            <div class="flex min-w-0 items-center gap-3">
+                <div class="brand-mark h-9 w-9 shrink-0 sm:h-10 sm:w-10">
+                    <i class="fa fa-graduation-cap text-lg"></i>
+                </div>
+                <div class="min-w-0">
+                    <h1 class="truncate text-sm font-bold text-slate-950 sm:text-base md:text-xl">四六级抗遗忘多智能体RAG复习系统</h1>
+                    <p class="hidden text-xs text-slate-500 md:block">RAGFlow 知识库与多智能体协同复习平台</p>
+                </div>
+            </div>
+            <div id="nav-unlogin" class="nav-unlogin-actions shrink-0 items-center gap-4">
+                <button onclick="openLoginModal()" class="primary-btn px-4 py-2.5 sm:px-5">
+                    <i class="fa fa-sign-in"></i> <span class="hidden sm:inline">用户登录</span><span class="sm:hidden">登录</span>
+                </button>
+            </div>
+            <div id="nav-login" class="hidden flex shrink-0 items-center gap-3">
+                <span id="user-role-tag" class="rounded-2xl px-3 py-1 text-sm font-medium"></span>
+                <span id="user-name" class="hidden text-sm text-slate-600 sm:inline"></span>
+                <button onclick="logout()"
+                    class="secondary-btn px-4 py-2 text-sm text-red-600">
+                    <i class="fa fa-sign-out mr-1"></i> 退出登录
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 登录弹窗遮罩 -->
+    <div id="login-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-slate-950/55 px-4 fade-in">
+        <div class="surface-card relative w-full max-w-md rounded-3xl p-7">
+            <button onclick="closeLoginModal()"
+                class="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-2xl text-slate-400 transition hover:bg-slate-100 hover:text-slate-700">
+                <i class="fa fa-times"></i>
+            </button>
+            <div class="mb-6">
+                <div class="brand-mark mb-4 h-11 w-11"><i class="fa fa-user-circle text-lg"></i></div>
+                <h2 class="text-2xl font-bold text-slate-950">登录学习空间</h2>
+                <p class="mt-2 text-sm text-slate-500">进入作文批改、翻译评分、错题复习和知识库检索。</p>
+            </div>
+            <form id="loginForm" action="/api/login" method="post">
+                <div class="mb-4">
+                    <label class="mb-2 block text-sm font-medium text-slate-700">账号</label>
+                    <input type="text" name="username" required placeholder="请输入登录账号"
+                        class="w-full rounded-2xl border px-4 py-3 outline-none">
+                </div>
+                <div class="mb-5">
+                    <label class="mb-2 block text-sm font-medium text-slate-700">密码</label>
+                    <input type="password" name="password" required placeholder="请输入登录密码"
+                        class="w-full rounded-2xl border px-4 py-3 outline-none">
+                </div>
+                <div id="login-msg" class="text-red-500 text-sm mb-4 hidden"></div>
+                <button type="submit" class="primary-btn w-full">
+                    登录进入系统
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 主容器 -->
+    <main class="shell py-8 md:py-12">
+        <!-- 未登录首页介绍 -->
+        <section id="home-desc" class="fade-in">
+            <div class="grid min-h-[calc(100dvh-132px)] items-center gap-8 pb-10 lg:grid-cols-[1.05fr_0.95fr]">
+                <div class="py-8">
+                    <p class="mb-5 inline-flex rounded-2xl border border-blue-200 bg-white/70 px-4 py-2 text-sm font-semibold text-blue-700">
+                        CET-4 / CET-6 复习工作台
+                    </p>
+                    <h2 class="max-w-full text-[2.35rem] font-black leading-[1.08] text-slate-950 sm:max-w-4xl sm:text-5xl md:text-6xl">
+                        <span class="block sm:inline">把批改、错题和</span>
+                        <span class="block sm:inline">复习节奏收进</span>
+                        <span class="block sm:inline">一个系统</span>
+                    </h2>
+                    <p class="mt-6 max-w-full text-lg leading-8 text-slate-600 sm:max-w-2xl">
+                        平台把知识库、多智能体批改与复习计划串起来，帮助学生发现弱项并持续巩固。
+                    </p>
+                    <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+                        <button onclick="openLoginModal()" class="primary-btn text-base">
+                            <i class="fa fa-sign-in"></i> 立即登录
+                        </button>
+                        <a href="#features" class="secondary-btn text-base">
+                            <i class="fa fa-compass"></i> 查看能力
+                        </a>
+                    </div>
+                    <div class="mt-10 grid max-w-2xl grid-cols-1 gap-3 sm:grid-cols-3">
+                        <div class="soft-panel rounded-3xl p-4">
+                            <div class="text-2xl font-black text-slate-950">15</div>
+                            <div class="mt-1 text-xs text-slate-500">作文与翻译评分制</div>
+                        </div>
+                        <div class="soft-panel rounded-3xl p-4">
+                            <div class="text-2xl font-black text-slate-950">4</div>
+                            <div class="mt-1 text-xs text-slate-500">复习节点追踪</div>
+                        </div>
+                        <div class="soft-panel rounded-3xl p-4">
+                            <div class="text-2xl font-black text-slate-950">RAG</div>
+                            <div class="mt-1 text-xs text-slate-500">知识库增强回答</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="surface-card overflow-hidden rounded-3xl p-3">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="学生使用电脑学习"
+                        class="h-[420px] w-full rounded-[1.25rem] object-cover md:h-[560px]">
+                    <div class="grid gap-3 p-3 md:grid-cols-2">
+                        <div class="rounded-3xl bg-slate-950 p-5 text-white">
+                            <i class="fa fa-line-chart text-blue-200"></i>
+                            <p class="mt-3 text-sm leading-6 text-slate-300">低分批改会自动沉淀为错题，复习任务按节点推进。</p>
+                        </div>
+                        <div class="rounded-3xl border border-slate-200 bg-white p-5">
+                            <i class="fa fa-database text-primary"></i>
+                            <p class="mt-3 text-sm leading-6 text-slate-600">管理员可查看高频问题，持续优化知识库内容。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="features" class="grid gap-4 pb-10 md:grid-cols-[1.2fr_0.8fr] lg:grid-cols-3">
+                <div class="surface-card rounded-3xl p-6 lg:col-span-1">
+                    <i class="fa fa-pencil-square-o text-2xl text-primary"></i>
+                    <h3 class="mt-5 text-xl font-bold text-slate-950">作文智能阅卷</h3>
+                    <p class="mt-3 leading-7 text-slate-600">15 分制打分，输出评语、问题定位与优化版本。</p>
+                </div>
+                <div class="surface-card rounded-3xl p-6 lg:col-span-1">
+                    <i class="fa fa-language text-2xl text-primary"></i>
+                    <h3 class="mt-5 text-xl font-bold text-slate-950">翻译批改点评</h3>
+                    <p class="mt-3 leading-7 text-slate-600">识别中式表达与语法问题，给出更自然的参考译文。</p>
+                </div>
+                <div class="surface-card rounded-3xl bg-slate-950 p-6 text-white lg:col-span-1">
+                    <i class="fa fa-calendar-check-o text-2xl text-blue-200"></i>
+                    <h3 class="mt-5 text-xl font-bold">抗遗忘复习计划</h3>
+                    <p class="mt-3 leading-7 text-slate-300">按 D1、D3、D7、D15 自动安排错题复盘，降低反复遗忘。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 登录后功能面板 -->
+        <section id="work-panel" class="hidden fade-in">
+            <div class="surface-card mb-6 rounded-3xl p-6 md:p-8">
+                <div class="grid gap-6 md:grid-cols-[1fr_auto] md:items-end">
+                    <div>
+                        <p class="mb-3 text-sm font-semibold text-blue-700">学习工作台</p>
+                        <h2 class="text-3xl font-black text-slate-950 md:text-4xl">今天先处理最影响提分的任务</h2>
+                        <p class="mt-3 max-w-2xl leading-7 text-slate-600">
+                            写作、翻译、错题和知识检索集中在同一页，结果会回流到复习计划中。
+                        </p>
+                    </div>
+                    <button onclick="getReviewTask(loginUid)" class="primary-btn self-start md:self-auto">
+                        <i class="fa fa-refresh"></i> 刷新复习任务
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid gap-6 mb-6 lg:grid-cols-2">
+                <!-- 作文批改模块 -->
+                <div class="surface-card rounded-3xl p-6">
+                    <h3 class="mb-4 flex items-center gap-3 text-xl font-bold text-slate-950">
+                        <span class="brand-mark h-10 w-10"><i class="fa fa-file-text-o"></i></span> 四六级作文智能批改
+                    </h3>
+                    <input id="writeUid" readonly class="hidden">
+                    <textarea id="essayContent" rows="8" placeholder="粘贴你的四六级作文，系统结合评分知识库自动批改打分"
+                        class="mb-4 w-full rounded-2xl border p-4 outline-none"></textarea>
+                    <button onclick="submitWriting()" class="primary-btn px-5 py-2.5">
+                        <i class="fa fa-paper-plane mr-1"></i> 提交批改
+                    </button>
+                    <div class="mt-4">
+                        <h4 class="mb-2 font-semibold text-slate-700">批改结果</h4>
+                        <div id="writingResult"
+                            class="result-box min-h-[120px] whitespace-pre-wrap rounded-2xl p-4 text-slate-600"></div>
+                    </div>
+                </div>
+                <!-- 翻译批改模块 -->
+                <div class="surface-card rounded-3xl p-6">
+                    <h3 class="mb-4 flex items-center gap-3 text-xl font-bold text-slate-950">
+                        <span class="brand-mark h-10 w-10"><i class="fa fa-exchange"></i></span> 段落翻译智能批改
+                    </h3>
+                    <input id="transUid" readonly class="hidden">
+                    <textarea id="originChinese" rows="3" placeholder="输入中文翻译原文"
+                        class="mb-3 w-full rounded-2xl border p-4 outline-none"></textarea>
+                    <textarea id="userTranslate" rows="3" placeholder="输入你写的英文译文"
+                        class="mb-4 w-full rounded-2xl border p-4 outline-none"></textarea>
+                    <button onclick="submitTranslate()" class="primary-btn px-5 py-2.5">
+                        <i class="fa fa-check-square-o mr-1"></i> 提交批改
+                    </button>
+                    <div class="mt-4">
+                        <h4 class="mb-2 font-semibold text-slate-700">批改结果</h4>
+                        <div id="transResult"
+                            class="result-box min-h-[120px] whitespace-pre-wrap rounded-2xl p-4 text-slate-600"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid gap-6 mb-6 lg:grid-cols-2">
+                <!-- 复习计划 -->
+                <div class="surface-card rounded-3xl p-6">
+                    <h3 class="mb-4 flex items-center gap-3 text-xl font-bold text-slate-950">
+                        <span class="brand-mark h-10 w-10"><i class="fa fa-book"></i></span> 艾宾浩斯抗遗忘复习计划
+                    </h3>
+                    <button onclick="getReviewTask(loginUid)"
+                        class="primary-btn mb-4 px-5 py-2.5">
+                        <i class="fa fa-refresh mr-1"></i> 查询待复习错题
+                    </button>
+                    <div id="taskResult"
+                        class="result-box min-h-[80px] whitespace-pre-wrap rounded-2xl p-4 text-sm text-slate-600">
+                    </div>
+                </div>
+                <!-- 管理员专属知识库统计 -->
+                <div id="admin-kb-box" class="hidden surface-card rounded-3xl p-6">
+                    <h3 class="mb-4 flex items-center gap-3 text-xl font-bold text-red-600">
+                        <span class="flex h-10 w-10 items-center justify-center rounded-2xl bg-red-600 text-white"><i class="fa fa-database"></i></span> 管理员知识库运维统计
+                    </h3>
+                    <button onclick="getKbSuggest()" class="mb-4 inline-flex items-center justify-center gap-2 rounded-2xl bg-red-600 px-5 py-2.5 font-semibold text-white transition hover:bg-red-700 active:translate-y-px">
+                        <i class="fa fa-bar-chart mr-1"></i> 获取高频错题优化建议
+                    </button>
+                    <div id="kbSuggestResult"
+                        class="result-box min-h-[80px] whitespace-pre-wrap rounded-2xl p-4 text-slate-600"></div>
+                </div>
+            </div>
+
+            <!-- 错题管理 -->
+            <div class="surface-card mb-6 rounded-3xl p-6">
+                <h3 class="mb-4 flex items-center gap-3 text-xl font-bold text-slate-950">
+                    <span class="flex h-10 w-10 items-center justify-center rounded-2xl bg-orange-500 text-white"><i class="fa fa-exclamation-triangle"></i></span> 错题管理中心
+                </h3>
+                <div class="mb-4 grid gap-4 md:grid-cols-2">
+                    <!-- 手动添加错题 -->
+                    <div class="soft-panel rounded-3xl p-4">
+                        <h4 class="mb-3 font-semibold text-slate-700">手动记录错题</h4>
+                        <select id="errorType"
+                            class="mb-3 w-full rounded-2xl border px-3 py-2 outline-none">
+                            <option value="vocab">词汇类</option>
+                            <option value="grammar">语法类</option>
+                            <option value="method">解题方法类</option>
+                            <option value="careless">粗心失误类</option>
+                        </select>
+                        <button onclick="addErrorRecord()"
+                            class="inline-flex items-center justify-center gap-2 rounded-2xl bg-orange-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-orange-600 active:translate-y-px">
+                            <i class="fa fa-plus mr-1"></i> 添加错题
+                        </button>
+                        <span id="addErrorMsg" class="text-green-600 text-sm ml-3"></span>
+                    </div>
+                    <!-- 错题统计 -->
+                    <div class="soft-panel flex flex-col items-center justify-center rounded-3xl p-4">
+                        <div class="text-4xl font-black text-primary" id="pendingCount">-</div>
+                        <div class="text-slate-500 text-sm">待复习错题</div>
+                        <div class="flex gap-4 mt-2 text-xs text-slate-400">
+                            <span>D1: <b id="statD1">-</b></span>
+                            <span>D3: <b id="statD3">-</b></span>
+                            <span>D7: <b id="statD7">-</b></span>
+                            <span>D15: <b id="statD15">-</b></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 错题列表 -->
+                <div id="errorList" class="result-box min-h-[60px] rounded-2xl p-4 text-sm text-slate-600">
+                    <span class="text-slate-400">点击上方「查询待复习错题」加载错题列表</span>
+                </div>
+            </div>
+
+            <!-- 知识库全局检索 -->
+            <div class="surface-card rounded-3xl p-6">
+                <h3 class="mb-4 flex items-center gap-3 text-xl font-bold text-slate-950">
+                    <span class="brand-mark h-10 w-10"><i class="fa fa-search"></i></span> 知识库全局检索
+                </h3>
+                <div class="flex flex-wrap gap-3 mb-4">
+                    <select id="kbType"
+                        class="rounded-2xl border px-4 py-2 outline-none">
+                        <option value="all">全部类别</option>
+                        <option value="writing">写作</option>
+                        <option value="trans">翻译</option>
+                        <option value="vocab">词汇</option>
+                        <option value="grammar">语法长难句</option>
+                        <option value="paper">真题</option>
+                        <option value="rule">评分规则</option>
+                    </select>
+                    <textarea id="searchQuery" placeholder="输入查询知识点/作文模板/解题技巧" rows="2"
+                        class="min-w-[260px] flex-1 rounded-2xl border p-3 outline-none"></textarea>
+                    <button onclick="commonSearch()"
+                        class="primary-btn self-end px-6 py-2.5">检索</button>
+                </div>
+                <div class="mt-2">
+                    <h4 class="mb-2 font-semibold text-slate-700">检索结果</h4>
+                    <div id="searchResult"
+                        class="result-box min-h-[100px] whitespace-pre-wrap rounded-2xl p-4 text-sm text-slate-600">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="mt-12 border-t border-slate-200/70 py-8">
+        <div class="shell flex flex-col gap-2 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
+            <p class="font-semibold text-slate-700">四六级抗遗忘多智能体RAG复习系统</p>
+            <p>© 2026 多智能体协同 RAG 架构 | 基于 RAGFlow 统一知识库构建</p>
+        </div>
+    </footer>
+
+    <script>
+        let isAdmin = "0";
+        let loginUid = null;
+        const urlParams = new URLSearchParams(window.location.search);
+        isAdmin = urlParams.get('is_admin');
+        loginUid = urlParams.get('uid');
+
+        // 页面加载初始化
+        window.onload = function () {
+            if (isAdmin !== null && loginUid !== null) {
+                // 已登录状态
+                document.getElementById('home-desc').classList.add('hidden');
+                document.getElementById('work-panel').classList.remove('hidden');
+                document.getElementById('nav-unlogin').classList.add('hidden');
+                document.getElementById('nav-login').classList.remove('hidden');
+                document.getElementById('writeUid').value = loginUid;
+                document.getElementById('transUid').value = loginUid;
+
+                // 身份标签
+                const roleTag = document.getElementById('user-role-tag');
+                if (isAdmin === "1") {
+                    roleTag.innerText = "管理员账号";
+                    roleTag.className = "rounded-2xl bg-red-50 px-3 py-1 text-sm font-semibold text-red-600";
+                    document.getElementById('admin-kb-box').classList.remove('hidden');
+                } else {
+                    roleTag.innerText = "学生账号";
+                    roleTag.className = "rounded-2xl bg-green-50 px-3 py-1 text-sm font-semibold text-green-700";
+                }
+                document.getElementById('user-name').innerText = loginUid;
+            }
+        }
+
+        // 登录弹窗控制
+        function openLoginModal() {
+            document.getElementById('login-modal').classList.remove('hidden');
+        }
+        function closeLoginModal() {
+            document.getElementById('login-modal').classList.add('hidden');
+            document.getElementById('login-msg').classList.add('hidden');
+        }
+
+        // 退出登录刷新页面
+        function logout() {
+            window.location.href = "/";
+        }
+
+        // 作文提交
+        async function submitWriting() {
+            const uid = document.getElementById('writeUid').value;
+            const content = document.getElementById('essayContent').value.trim();
+            if (!content) return alert("请输入作文内容");
+            const fd = new FormData();
+            fd.append("user_id", uid);
+            fd.append("content", content);
+            const resp = await fetch("/api/submit_writing", { method: "POST", body: fd });
+            const data = await resp.json();
+            document.getElementById('writingResult').innerText = `作文得分：${data.score} / 15\n评语分析：${data.comment}\n\n修改优化版本：\n${data.revise}`;
+        }
+
+        // 翻译提交
+        async function submitTranslate() {
+            const uid = document.getElementById('transUid').value;
+            const origin = document.getElementById('originChinese').value.trim();
+            const userTrans = document.getElementById('userTranslate').value.trim();
+            if (!origin || !userTrans) return alert("请填写原文与译文");
+            const fd = new FormData();
+            fd.append("user_id", uid);
+            fd.append("origin", origin);
+            fd.append("user_trans", userTrans);
+            const resp = await fetch("/api/submit_trans", { method: "POST", body: fd });
+            const data = await resp.json();
+            document.getElementById('transResult').innerText = `翻译得分：${data.score} / 15\n点评分析：${data.suggest}\n\n优化参考译文：\n${data.better_trans}`;
+        }
+
+        // 复习任务（含错题列表 + 完成标记 + 作文/翻译内容展示）
+        async function getReviewTask(uid) {
+            // 刷新时清空作文和翻译输入框
+            document.getElementById('essayContent').value = '';
+            document.getElementById('originChinese').value = '';
+            document.getElementById('userTranslate').value = '';
+            // 同时加载复习任务和错题列表
+            const [taskResp, errResp] = await Promise.all([
+                fetch(`/api/review_task/${uid}`),
+                fetch(`/api/error_records/${uid}?finished=0`),
+            ]);
+            const taskData = await taskResp.json();
+            const errData = await errResp.json();
+
+            // 复习任务（含同步提示）
+            let html = "";
+            const syncedCount = taskData.synced_count || 0;
+            if (syncedCount > 0) {
+                html += `🔄 已自动同步 ${syncedCount} 条漏掉的低分作文/翻译到错题管理中\n\n`;
+            }
+
+            const hasErrors = errData.records && errData.records.length > 0;
+            if (!taskData.tasks || taskData.tasks.length === 0) {
+                if (hasErrors) {
+                    html += `当前共 ${errData.records.length} 条错题，暂无到达复习时间节点的任务，请耐心等待艾宾浩斯复习周期\n`;
+                } else {
+                    html += "暂无待复习错题，完成批改后低分题目会自动纳入复习计划\n";
+                }
+            } else {
+                taskData.tasks.forEach(item => {
+                    const typeLabel = getTypeLabel(item.error_type, item.source_type);
+                    const nodeText = item.review_node ? item.review_node[2] : '待复习';
+                    html += `错题ID：${item.error_id} | ${typeLabel} | 复习节点：${nodeText}`;
+                    if (item.score !== undefined && item.score !== null) {
+                        html += ` | 得分：${item.score}/15`;
+                    }
+                    if (item.content_preview) {
+                        html += `\n  内容预览：${item.content_preview.substring(0, 80)}...`;
+                    }
+                    html += `\n`;
+                });
+            }
+            document.getElementById('taskResult').innerText = html;
+
+            // 错题统计
+            if (errData.pending_stats) {
+                const stats = errData.pending_stats;
+                document.getElementById('pendingCount').innerText = stats.total;
+                document.getElementById('statD1').innerText = stats.d1;
+                document.getElementById('statD3').innerText = stats.d3;
+                document.getElementById('statD7').innerText = stats.d7;
+                document.getElementById('statD15').innerText = stats.d15;
+            }
+
+            // 错题列表（含完成按钮 + 作文/翻译内容展示）
+            if (errData.records && errData.records.length > 0) {
+                let listHtml = '<div class="space-y-3">';
+                errData.records.forEach(r => {
+                    const nextStage = getNextStage(r);
+                    const typeLabel = getTypeLabel(r.error_type, r.source_type);
+                    const sourceBadge = getSourceBadge(r.source_type);
+
+                    listHtml += `<div class="rounded-2xl border border-slate-100 bg-white p-4">
+                    <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span class="font-medium">#${r.id}</span>
+                            <span class="rounded-xl bg-slate-100 px-2 py-1 text-xs font-medium">${typeLabel}</span>
+                            ${sourceBadge}
+                            <span class="text-xs text-slate-400">创建: ${r.first_wrong || '-'}</span>
+                        </div>
+                        <div class="flex gap-2 items-center">`;
+                    if (nextStage) {
+                        listHtml += `<span class="text-xs text-orange-500">待复习: ${nextStage}</span>
+                        <button onclick="markReviewDone(${r.id},'${nextStage}')" class="rounded-xl bg-green-600 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-green-700 active:translate-y-px">标记完成</button>`;
+                    } else if (r.finished) {
+                        listHtml += `<span class="text-xs text-green-600">已完成全部复习</span>`;
+                    } else {
+                        listHtml += `<span class="text-xs text-slate-400">等待复习周期</span>`;
+                    }
+                    listHtml += `</div></div>`;
+
+                    // 展示作文/翻译内容
+                    if (r.source_type === 'writing' && r.writing_content) {
+                        listHtml += `<div class="mt-3 rounded-xl bg-blue-50 p-3 text-xs">
+                            <div class="font-semibold text-blue-700 mb-1">📝 作文原文（得分：${r.writing_score || '-'}/15）</div>
+                            <div class="text-slate-600 max-h-24 overflow-y-auto whitespace-pre-wrap">${escapeHtml(r.writing_content.substring(0, 300))}${r.writing_content.length > 300 ? '...' : ''}</div>`;
+                        if (r.writing_comment) {
+                            listHtml += `<div class="font-semibold text-blue-700 mt-2 mb-1">💬 评语</div>
+                            <div class="text-slate-600">${escapeHtml(r.writing_comment.substring(0, 200))}</div>`;
+                        }
+                        if (r.writing_revise) {
+                            listHtml += `<div class="font-semibold text-green-700 mt-2 mb-1">✅ 修改稿</div>
+                            <div class="text-slate-600 max-h-24 overflow-y-auto whitespace-pre-wrap">${escapeHtml(r.writing_revise.substring(0, 300))}${r.writing_revise.length > 300 ? '...' : ''}</div>`;
+                        }
+                        listHtml += `</div>`;
+                    } else if (r.source_type === 'trans' && r.trans_origin) {
+                        listHtml += `<div class="mt-3 rounded-xl bg-purple-50 p-3 text-xs">
+                            <div class="font-semibold text-purple-700 mb-1">🌐 中文原文（得分：${r.trans_score || '-'}/15）</div>
+                            <div class="text-slate-600">${escapeHtml(r.trans_origin.substring(0, 300))}</div>
+                            <div class="font-semibold text-purple-700 mt-2 mb-1">📤 你的译文</div>
+                            <div class="text-slate-600">${escapeHtml((r.trans_user_trans || '').substring(0, 300))}</div>`;
+                        if (r.trans_suggest) {
+                            listHtml += `<div class="font-semibold text-purple-700 mt-2 mb-1">💬 点评</div>
+                            <div class="text-slate-600">${escapeHtml(r.trans_suggest.substring(0, 200))}</div>`;
+                        }
+                        listHtml += `</div>`;
+                    }
+                    listHtml += `</div>`;
+                });
+                listHtml += '</div>';
+                document.getElementById('errorList').innerHTML = listHtml;
+            } else {
+                document.getElementById('errorList').innerHTML = '<span class="text-slate-400">暂无错题记录，提交作文/翻译批改得分≤9分自动记录，或手动添加</span>';
+            }
+        }
+
+        function getTypeLabel(errorType, sourceType) {
+            if (sourceType === 'writing') return '作文';
+            if (sourceType === 'trans') return '翻译';
+            const map = { vocab: '词汇', grammar: '语法', method: '方法', careless: '粗心' };
+            return map[errorType] || errorType || '未知';
+        }
+
+        function getSourceBadge(sourceType) {
+            if (sourceType === 'writing') return '<span class="rounded-xl bg-blue-100 px-2 py-1 text-xs font-medium text-blue-700">作文批改</span>';
+            if (sourceType === 'trans') return '<span class="rounded-xl bg-purple-100 px-2 py-1 text-xs font-medium text-purple-700">翻译批改</span>';
+            return '';
+        }
+
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        function getNextStage(r) {
+            if (!r.review_d1) return 'd1';
+            if (!r.review_d3) return 'd3';
+            if (!r.review_d7) return 'd7';
+            if (!r.review_d15) return 'd15';
+            return null;
+        }
+
+        // 手动添加错题
+        async function addErrorRecord() {
+            if (!loginUid) return alert("请先登录");
+            const errorType = document.getElementById('errorType').value;
+            const fd = new FormData();
+            fd.append('user_id', loginUid);
+            fd.append('error_type', errorType);
+            const resp = await fetch('/api/error_record', { method: 'POST', body: fd });
+            const data = await resp.json();
+            if (data.code === 200) {
+                document.getElementById('addErrorMsg').innerText = '已添加';
+                setTimeout(() => document.getElementById('addErrorMsg').innerText = '', 2000);
+                getReviewTask(loginUid);
+            } else {
+                alert(data.msg);
+            }
+        }
+
+        // 标记复习完成
+        async function markReviewDone(errorId, stage) {
+            const fd = new FormData();
+            fd.append('error_id', errorId);
+            fd.append('review_stage', stage);
+            const resp = await fetch('/api/review/complete', { method: 'POST', body: fd });
+            const data = await resp.json();
+            if (data.code === 200) {
+                getReviewTask(loginUid);
+            } else {
+                alert(data.msg);
+            }
+        }
+
+        // ===== OCR 拍照识题 =====
+        let ocrBase64 = '';
+
+        function previewOcrImage() {
+            const file = document.getElementById('ocrFileInput').files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                ocrBase64 = e.target.result;
+                document.getElementById('ocrPreview').innerHTML = `<img src="${ocrBase64}" class="max-w-full max-h-48 rounded-lg object-contain">`;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function doOCR() {
+            if (!ocrBase64) return alert("请先选择图片");
+            document.getElementById('ocrResult').value = "识别中...";
+            document.getElementById('ocrEngine').innerText = '';
+            try {
+                const resp = await fetch('/api/ocr', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ img_base64: ocrBase64 }),
+                });
+                const data = await resp.json();
+                document.getElementById('ocrResult').value = data.text || '(未识别到文字)';
+                const engine = data.engine || 'unknown';
+                document.getElementById('ocrEngine').innerText = `引擎: ${engine}`;
+            } catch (e) {
+                document.getElementById('ocrResult').value = `请求失败: ${e.message}`;
+            }
+        }
+
+        function copyOcrText() {
+            const text = document.getElementById('ocrResult').value;
+            if (!text) return;
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = event.target;
+                btn.innerText = '已复制';
+                setTimeout(() => btn.innerText = '复制文字', 1500);
+            });
+        }
+
+        // 管理员知识库统计
+        async function getKbSuggest() {
+            const resp = await fetch(`/api/kb_suggest?is_admin=${isAdmin}`);
+            const data = await resp.json();
+            document.getElementById('kbSuggestResult').innerText = data.suggest || data.msg;
+        }
+
+        // 知识库检索
+        async function commonSearch() {
+            const type = document.getElementById('kbType').value;
+            const query = document.getElementById('searchQuery').value.trim();
+            if (!query) return alert("请输入检索内容");
+            document.getElementById('searchResult').innerHTML = '<span class="text-slate-400"><i class="fa fa-spinner fa-spin"></i> 检索中，AI正在整合回答...</span>';
+            const fd = new FormData();
+            fd.append("biz_type", type);
+            fd.append("query", query);
+            try {
+                const resp = await fetch("/api/rag_search", { method: "POST", body: fd });
+                const data = await resp.json();
+
+                let html = "";
+
+                // AI整合回答优先展示
+                const aiAnswer = data.ai_answer || "";
+                if (aiAnswer) {
+                    const isError = aiAnswer.startsWith("[AI") || aiAnswer.includes("失败") || aiAnswer.includes("超时");
+                    const bgClass = isError ? 'bg-red-50 border border-red-200 text-red-700' : 'bg-blue-50 border border-blue-200';
+                    html += `<div class="${bgClass} mb-4 rounded-2xl p-4">`;
+                    html += `<div class="mb-1 font-semibold">${isError ? 'AI 回答异常' : 'AI 整合回答'}</div>`;
+                    html += `<div>${aiAnswer}</div>`;
+                    html += `</div>`;
+                }
+
+                // 检索结果列表
+                const text = data.text || "";
+                if (text && text !== "未检索到相关内容") {
+                    html += `<div class="mb-2 font-semibold text-slate-700">检索结果列表</div>`;
+                    html += `<pre class="overflow-x-auto rounded-2xl bg-slate-100 p-3 text-xs text-slate-600">${text}</pre>`;
+                } else if (!aiAnswer) {
+                    html += `<div class="text-slate-400 text-center py-4">
+                    <i class="fa fa-inbox text-3xl mb-2"></i>
+                    <p>未检索到相关内容</p>
+                    <p class="text-xs mt-1">可能原因：知识库未导入数据 / RAGFlow服务异常 / 查询词不匹配</p>
+                </div>`;
+                }
+
+                // trace链路
+                if (data.trace && data.trace.length > 0) {
+                    html += `<div class="mt-3 text-xs text-slate-300">执行链路: ${data.trace.join(' > ')}</div>`;
+                }
+
+                if (data.error) {
+                    html += `<div class="text-xs text-red-400 mt-1">错误: ${data.error}</div>`;
+                }
+
+                document.getElementById('searchResult').innerHTML = html || "未获取到结果";
+            } catch (e) {
+                document.getElementById('searchResult').innerHTML = `<div class="text-red-500">请求失败: ${e.message}</div>`;
+            }
+        }
+    </script>
+</body>
+
+</html>
