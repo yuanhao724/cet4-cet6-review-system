@@ -198,27 +198,27 @@ return None   # 未到时间或已完成
 
 ### 首页与登录
 
-![首页与登录](docs/screenshots/01-首页与登录.png)
+![首页与登录](docs/screenshots/01-首页与登录.jpeg)
 
 ### 作文智能批改
 
-![作文智能批改](docs/screenshots/02-作文智能批改.png)
+![作文智能批改](docs/screenshots/02-作文智能批改.jpeg)
 
 ### 翻译智能评分
 
-![翻译智能评分](docs/screenshots/03-翻译智能评分.png)
+![翻译智能评分](docs/screenshots/03-翻译智能评分.jpeg)
 
 ### 艾宾浩斯复习计划
 
-![艾宾浩斯复习计划](docs/screenshots/04-艾宾浩斯复习计划.png)
+![艾宾浩斯复习计划](docs/screenshots/04-艾宾浩斯复习计划.jpeg)
 
 ### 错题管理中心
 
-![错题管理中心](docs/screenshots/05-错题管理中心.png)
+![错题管理中心](docs/screenshots/05-错题管理中心.jpeg)
 
 ### 知识库全局检索
 
-![知识库全局检索](docs/screenshots/06-知识库全局检索.png)
+![知识库全局检索](docs/screenshots/06-知识库全局检索.jpeg)
 
 ## 团队
 
