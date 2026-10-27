@@ -4,7 +4,6 @@
 
 基于多智能体 RAG 架构的四六级备考平台：以 RAGFlow 知识库 + LangGraph 多智能体协同 + 艾宾浩斯遗忘曲线为核心，提供作文智能批改、翻译智能评分、错题管理、科学复习计划与知识库全局检索等能力，实现「个性化批改 + 科学抗遗忘 + 精准提分」。
 
-
 ---
 
 ## 功能特性
@@ -92,10 +91,9 @@
 
 ### 1. 部署 RAGFlow 知识库
 
-```bash
-# 部署 RAGFlow v0.17（默认端口 9380）
-docker compose -f docker/docker-compose.yml up -d
-```
+### 1. 部署 RAGFlow 知识库
+
+部署配置参考本地环境。RAGFlow v0.17（默认端口 9380）通过 Docker 部署，docker-compose.yml 参考 RAGFlow 官方仓库配置，本仓库未包含部署文件。
 
 - 创建知识库，导入四六级资料数据集（考纲词汇表、高分范文、评分标准、翻译真题与参考译文、语法长难句、解题技巧、常见错误归纳）
 - 知识库切片解析后向量化（Embedding 模型：`BAAI/bge-m3`）
@@ -105,12 +103,11 @@ docker compose -f docker/docker-compose.yml up -d
 ```sql
 -- 在 MySQL 8.0（端口 3307）中创建 4 张业务表
 -- user / writing_submit / trans_submit / error_record
--- 建表 SQL 见项目 sql/ 目录（如有）
 ```
 
 ### 3. 配置后端环境变量
 
-在 `backend/` 下创建 `.env`（参考 `.env.example`）：
+在 `backend/` 下创建 `.env`：
 
 ```ini
 MYSQL_HOST=localhost
@@ -122,7 +119,6 @@ MYSQL_DB=cet_review
 RAGFLOW_BASE_URL=http://localhost:9380
 RAGFLOW_API_KEY=your_ragflow_api_key
 RAGFLOW_KB_ID=your_knowledge_base_id
-# 关键：创建独立的 no-KB Chat Assistant，用于下游纯 LLM 调用（避免冗余 KB 检索导致超时）
 RAGFLOW_CHAT_ID_LLM=your_no_kb_chat_id
 
 DEEPSEEK_API_KEY=your_deepseek_api_key
@@ -130,9 +126,10 @@ DEEPSEEK_API_KEY=your_deepseek_api_key
 
 ### 4. 启动后端
 
+部署配置参考本地环境。后端依赖见代码 import，按 FastAPI + pymysql + langgraph + requests 等常规依赖自行安装；启动命令：
+
 ```bash
 cd backend
-pip install -r requirements.txt
 uvicorn main:app --host 0.0.0.0 --port 8000
 ```
 
@@ -140,7 +137,6 @@ uvicorn main:app --host 0.0.0.0 --port 8000
 
 ```bash
 cd frontend
-# 静态 SPA，任选本地静态服务器
 python -m http.server 8080
 ```
 
@@ -184,6 +180,61 @@ return None   # 未到时间或已完成
 - 作文得分 ≤ 9 分自动创建错题，纳入复习计划闭环
 - 完成 D15 后自动归档
 
+## 检索评测与消融实验
+
+> 生产系统基于 RAGFlow 统一知识库引擎；为量化检索链路各模块的独立增益，`eval/` 目录下搭建了一套独立的本地检索评测管线（TF-IDF + bge-m3 + RRF），与生产链路解耦，可单独复现消融实验。
+
+### 评测集
+
+- **规模**：214 题，按题型分层——词汇 120 / 翻译 66 / 写作 28
+- **来源**：取自知识库真实文档，为开卷检索评测
+- **指标**：
+  - `doc@5`：Top-5 文档级召回，按来源文档名匹配
+  - `kw@5`：答案关键词命中率，按关键词大小写不敏感匹配
+
+### 基线配置
+
+| 维度 | 配置 |
+| --- | --- |
+| 后端 | TF-IDF 词法检索（char_wb，2-4 元字符 n-gram，余弦相似度） |
+| 切块 | naive 切块：按空行分段，合并至 800 字符，overlap 100 |
+| 查询改写 | 无（query 原样） |
+
+基线结果：**doc@5 = 31.8%，kw@5 = 42.1%**
+
+### 消融实验
+
+| 模块 | 增益 | 说明 |
+| --- | --- | --- |
+| 词条级切块（替代 naive） | +16.8pp | 按词条边界切分，避免定义被切断 |
+| 查询改写 | +1.4pp | 低质 query 改写后再检索 |
+| bge-m3 密集 / TF-IDF 词法 RRF 双路融合 | +5.6pp | 密集与词法互补，RRF 融合排序 |
+
+### 全链路最终结果
+
+| 指标 | 基线 | 全链路 | 提升 |
+| --- | --- | --- | --- |
+| doc@5 | 31.8% | **96.7%** | +64.9pp |
+| kw@5 | 42.1% | **95.8%**（205/214） | +53.7pp |
+
+分题型：词汇子集 120/120 全命中，翻译子集 66/66 全命中。
+
+**消融结论**：主增益来自切块策略与双路融合，而非更换更大参数模型，验证检索工程对 RAG 效果的主导作用。
+
+### 复现
+
+```bash
+cd eval
+# 一键跑三组消融并打印增益表
+python run_ablations.py
+```
+
+相关文件：
+- `eval/local_retrieval_eval.py`：TF-IDF / bge-m3 / hybrid 三后端 + naive/structured 切块 + none/basic 改写
+- `eval/run_ablations.py`：一键复现三组消融（RRF 融合、词条切块、查询改写）
+- `eval/build_eval_set_200.py` + `eval/eval_set_200.json`：214 题评测集生成脚本与数据
+- `eval/eval_lib.py`：打分逻辑
+
 ## 关键技术难点与解决方案
 
 | 难点 | 解决方案 |
@@ -224,7 +275,7 @@ return None   # 未到时间或已完成
 
 | 成员 | 角色 | 职责 |
 | --- | --- | --- |
-| 袁豪（组长） | 后端 / 架构 | 项目架构设计、LangGraph 多智能体编排、核心代码开发、统筹项目进度 |
+| 袁豪（组长） | 后端 / 架构 | 项目架构设计、LangGraph 多智能体编排、核心代码开发、检索评测与消融实验 |
 | 谭桥峰 | 知识库 | RAGFlow 知识库搭建、数据导入与管理、API 封装 |
 | 冉校川 | 前端 | 前端页面开发（Tailwind CSS + 原生 JS）、交互设计 |
 | 詹子轩 | 算法 / 数据库 | 数据库设计、艾宾浩斯复习算法、测试与优化前端代码 |
@@ -232,4 +283,4 @@ return None   # 未到时间或已完成
 
 ## License
 
-[MIT](LICENSE)（或按项目要求修改）
+MIT
