@@ -1,0 +1,2587 @@
+{
+ "meta": {
+  "name": "四六级知识库检索命中率评测集（200+ 扩展版）",
+  "version": 2,
+  "n_questions": 214,
+  "top_k_eval": [
+   1,
+   3,
+   5
+  ],
+  "hit_definition": {
+   "doc@k": "正确来源文档出现在 top-k chunk 的 document_name 中（文档级召回率）",
+   "kw@k": "标准答案关键词出现在 top-k chunk 内容中（答案级命中率，主口径）"
+  },
+  "note": "题目与答案自动抽取自 数据集/ 目录真实文档（词汇/翻译/写作三子集），关键词为答案的首个连续片段。"
+ },
+ "questions": [
+  {
+   "id": 1,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 alert 的释义是什么？",
+   "answer": "警觉的",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "警觉的"
+   ]
+  },
+  {
+   "id": 2,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 shed 的释义是什么？",
+   "answer": "棚",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "棚"
+   ]
+  },
+  {
+   "id": 3,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 grant 的释义是什么？",
+   "answer": "授予",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "授予"
+   ]
+  },
+  {
+   "id": 4,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 fairly 的释义是什么？",
+   "answer": "相当地",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "相当地"
+   ]
+  },
+  {
+   "id": 5,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 stem 的释义是什么？",
+   "answer": "茎",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "茎"
+   ]
+  },
+  {
+   "id": 6,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 congress 的释义是什么？",
+   "answer": "国会",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "国会"
+   ]
+  },
+  {
+   "id": 7,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 competitor 的释义是什么？",
+   "answer": "竞争对手",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "竞争对手"
+   ]
+  },
+  {
+   "id": 8,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 survey 的释义是什么？",
+   "answer": "调查",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "调查"
+   ]
+  },
+  {
+   "id": 9,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 rewarding 的释义是什么？",
+   "answer": "奖励",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "奖励"
+   ]
+  },
+  {
+   "id": 10,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 factor 的释义是什么？",
+   "answer": "因素",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "因素"
+   ]
+  },
+  {
+   "id": 11,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 farming 的释义是什么？",
+   "answer": "农事",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "农事"
+   ]
+  },
+  {
+   "id": 12,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 structure 的释义是什么？",
+   "answer": "结构",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "结构"
+   ]
+  },
+  {
+   "id": 13,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 greenhouse 的释义是什么？",
+   "answer": "温室",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "温室"
+   ]
+  },
+  {
+   "id": 14,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 threaten 的释义是什么？",
+   "answer": "扬言要",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "扬言要"
+   ]
+  },
+  {
+   "id": 15,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 endanger 的释义是什么？",
+   "answer": "危害",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "危害"
+   ]
+  },
+  {
+   "id": 16,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 tremendous 的释义是什么？",
+   "answer": "巨大的",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "巨大的"
+   ]
+  },
+  {
+   "id": 17,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 interaction 的释义是什么？",
+   "answer": "相互作用",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "相互作用"
+   ]
+  },
+  {
+   "id": 18,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 hunting 的释义是什么？",
+   "answer": "狩猎",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "狩猎"
+   ]
+  },
+  {
+   "id": 19,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 exhibit 的释义是什么？",
+   "answer": "展览",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "展览"
+   ]
+  },
+  {
+   "id": 20,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 uncertainty 的释义是什么？",
+   "answer": "不确定性",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "不确定性"
+   ]
+  },
+  {
+   "id": 21,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 charity 的释义是什么？",
+   "answer": "慈善机构",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "慈善机构"
+   ]
+  },
+  {
+   "id": 22,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 empire 的释义是什么？",
+   "answer": "帝国",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "帝国"
+   ]
+  },
+  {
+   "id": 23,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 inquire 的释义是什么？",
+   "answer": "询问",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "询问"
+   ]
+  },
+  {
+   "id": 24,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 protein 的释义是什么？",
+   "answer": "蛋白质",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "蛋白质"
+   ]
+  },
+  {
+   "id": 25,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 overwhelm 的释义是什么？",
+   "answer": "充溢",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "充溢"
+   ]
+  },
+  {
+   "id": 26,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 sociable 的释义是什么？",
+   "answer": "善于交际的",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "善于交际的"
+   ]
+  },
+  {
+   "id": 27,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 industrial 的释义是什么？",
+   "answer": "工业的",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "工业的"
+   ]
+  },
+  {
+   "id": 28,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 learner 的释义是什么？",
+   "answer": "学习者",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "学习者"
+   ]
+  },
+  {
+   "id": 29,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 interactive 的释义是什么？",
+   "answer": "互动的",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "互动的"
+   ]
+  },
+  {
+   "id": 30,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 aging 的释义是什么？",
+   "answer": "变老",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "变老"
+   ]
+  },
+  {
+   "id": 31,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 counterpart 的释义是什么？",
+   "answer": "对应方",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "对应方"
+   ]
+  },
+  {
+   "id": 32,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 heritage 的释义是什么？",
+   "answer": "遗产",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "遗产"
+   ]
+  },
+  {
+   "id": 33,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 recipient 的释义是什么？",
+   "answer": "收件人",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "收件人"
+   ]
+  },
+  {
+   "id": 34,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 overtake 的释义是什么？",
+   "answer": "赶上",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "赶上"
+   ]
+  },
+  {
+   "id": 35,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 additional 的释义是什么？",
+   "answer": "附加的",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "附加的"
+   ]
+  },
+  {
+   "id": 36,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 teaching 的释义是什么？",
+   "answer": "教学",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "教学"
+   ]
+  },
+  {
+   "id": 37,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 indicator 的释义是什么？",
+   "answer": "指示信号",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "指示信号"
+   ]
+  },
+  {
+   "id": 38,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 rear 的释义是什么？",
+   "answer": "后方的",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "后方的"
+   ]
+  },
+  {
+   "id": 39,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 foremost 的释义是什么？",
+   "answer": "最重要的",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "最重要的"
+   ]
+  },
+  {
+   "id": 40,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 inherent 的释义是什么？",
+   "answer": "固有的",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "固有的"
+   ]
+  },
+  {
+   "id": 41,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 tragic 的释义是什么？",
+   "answer": "悲剧的",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "悲剧的"
+   ]
+  },
+  {
+   "id": 42,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 pessimistic 的释义是什么？",
+   "answer": "悲观的",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "悲观的"
+   ]
+  },
+  {
+   "id": 43,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 adequately 的释义是什么？",
+   "answer": "充分",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "充分"
+   ]
+  },
+  {
+   "id": 44,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 peculiar 的释义是什么？",
+   "answer": "特有的",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "特有的"
+   ]
+  },
+  {
+   "id": 45,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 harsh 的释义是什么？",
+   "answer": "严厉的",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "严厉的"
+   ]
+  },
+  {
+   "id": 46,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 coastal 的释义是什么？",
+   "answer": "沿海的",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "沿海的"
+   ]
+  },
+  {
+   "id": 47,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 unemployed 的释义是什么？",
+   "answer": "失业的",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "失业的"
+   ]
+  },
+  {
+   "id": 48,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 supplier 的释义是什么？",
+   "answer": "供应商",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "供应商"
+   ]
+  },
+  {
+   "id": 49,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 fossil 的释义是什么？",
+   "answer": "化石",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "化石"
+   ]
+  },
+  {
+   "id": 50,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 romance 的释义是什么？",
+   "answer": "浪漫",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "浪漫"
+   ]
+  },
+  {
+   "id": 51,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 apparently 的释义是什么？",
+   "answer": "显然地",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "显然地"
+   ]
+  },
+  {
+   "id": 52,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 fraction 的释义是什么？",
+   "answer": "小部分",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "小部分"
+   ]
+  },
+  {
+   "id": 53,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 charter 的释义是什么？",
+   "answer": "宪章",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "宪章"
+   ]
+  },
+  {
+   "id": 54,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 inferior 的释义是什么？",
+   "answer": "较差的",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "较差的"
+   ]
+  },
+  {
+   "id": 55,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 oimt 的释义是什么？",
+   "answer": "奥伊姆",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "奥伊姆"
+   ]
+  },
+  {
+   "id": 56,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 aviation 的释义是什么？",
+   "answer": "航空",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "航空"
+   ]
+  },
+  {
+   "id": 57,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 chase 的释义是什么？",
+   "answer": "追赶",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "追赶"
+   ]
+  },
+  {
+   "id": 58,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 decisive 的释义是什么？",
+   "answer": "果断的",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "果断的"
+   ]
+  },
+  {
+   "id": 59,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 monthly 的释义是什么？",
+   "answer": "月刊",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "月刊"
+   ]
+  },
+  {
+   "id": 60,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 magnet 的释义是什么？",
+   "answer": "磁铁",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "磁铁"
+   ]
+  },
+  {
+   "id": 61,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 runway 的释义是什么？",
+   "answer": "跑道",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "跑道"
+   ]
+  },
+  {
+   "id": 62,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 robbery 的释义是什么？",
+   "answer": "盗窃",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "盗窃"
+   ]
+  },
+  {
+   "id": 63,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 probable 的释义是什么？",
+   "answer": "可能的",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "可能的"
+   ]
+  },
+  {
+   "id": 64,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 furnish 的释义是什么？",
+   "answer": "布置家具",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "布置家具"
+   ]
+  },
+  {
+   "id": 65,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 disappointment 的释义是什么？",
+   "answer": "失望",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "失望"
+   ]
+  },
+  {
+   "id": 66,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 incidental 的释义是什么？",
+   "answer": "附带的",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "附带的"
+   ]
+  },
+  {
+   "id": 67,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 simplicity 的释义是什么？",
+   "answer": "简单",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "简单"
+   ]
+  },
+  {
+   "id": 68,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 segment 的释义是什么？",
+   "answer": "段",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "段"
+   ]
+  },
+  {
+   "id": 69,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 prohibition 的释义是什么？",
+   "answer": "禁止",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "禁止"
+   ]
+  },
+  {
+   "id": 70,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 talkative 的释义是什么？",
+   "answer": "健谈的",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "健谈的"
+   ]
+  },
+  {
+   "id": 71,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 migrant 的释义是什么？",
+   "answer": "移居者",
+   "doc_keys": [
+    "四级核心单词"
+   ],
+   "keywords": [
+    "移居者"
+   ]
+  },
+  {
+   "id": 72,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 sue 的释义是什么？",
+   "answer": "控告",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "控告"
+   ]
+  },
+  {
+   "id": 73,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 fundamental 的释义是什么？",
+   "answer": "基本的",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "基本的"
+   ]
+  },
+  {
+   "id": 74,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 volunteer 的释义是什么？",
+   "answer": "志愿者",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "志愿者"
+   ]
+  },
+  {
+   "id": 75,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 compelled 的释义是什么？",
+   "answer": "强迫",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "强迫"
+   ]
+  },
+  {
+   "id": 76,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 heal 的释义是什么？",
+   "answer": "治愈",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "治愈"
+   ]
+  },
+  {
+   "id": 77,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 attract 的释义是什么？",
+   "answer": "吸引",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "吸引"
+   ]
+  },
+  {
+   "id": 78,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 chief 的释义是什么？",
+   "answer": "首领",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "首领"
+   ]
+  },
+  {
+   "id": 79,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 commit 的释义是什么？",
+   "answer": "犯罪",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "犯罪"
+   ]
+  },
+  {
+   "id": 80,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 security 的释义是什么？",
+   "answer": "安全",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "安全"
+   ]
+  },
+  {
+   "id": 81,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 reject 的释义是什么？",
+   "answer": "拒绝",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "拒绝"
+   ]
+  },
+  {
+   "id": 82,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 transit 的释义是什么？",
+   "answer": "运输",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "运输"
+   ]
+  },
+  {
+   "id": 83,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 pressure 的释义是什么？",
+   "answer": "压力",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "压力"
+   ]
+  },
+  {
+   "id": 84,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 modest 的释义是什么？",
+   "answer": "些许的",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "些许的"
+   ]
+  },
+  {
+   "id": 85,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 overcome 的释义是什么？",
+   "answer": "克服",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "克服"
+   ]
+  },
+  {
+   "id": 86,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 attractive 的释义是什么？",
+   "answer": "有吸引力的",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "有吸引力的"
+   ]
+  },
+  {
+   "id": 87,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 literature 的释义是什么？",
+   "answer": "文学",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "文学"
+   ]
+  },
+  {
+   "id": 88,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 proceeding 的释义是什么？",
+   "answer": "诉讼程序",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "诉讼程序"
+   ]
+  },
+  {
+   "id": 89,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 commitment 的释义是什么？",
+   "answer": "承诺",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "承诺"
+   ]
+  },
+  {
+   "id": 90,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 convenience 的释义是什么？",
+   "answer": "方便",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "方便"
+   ]
+  },
+  {
+   "id": 91,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 adjust 的释义是什么？",
+   "answer": "调整",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "调整"
+   ]
+  },
+  {
+   "id": 92,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 transport 的释义是什么？",
+   "answer": "运输",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "运输"
+   ]
+  },
+  {
+   "id": 93,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 transform 的释义是什么？",
+   "answer": "使改变",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "使改变"
+   ]
+  },
+  {
+   "id": 94,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 slide 的释义是什么？",
+   "answer": "滑动",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "滑动"
+   ]
+  },
+  {
+   "id": 95,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 nominate 的释义是什么？",
+   "answer": "提名",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "提名"
+   ]
+  },
+  {
+   "id": 96,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 relay 的释义是什么？",
+   "answer": "转发",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "转发"
+   ]
+  },
+  {
+   "id": 97,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 converge 的释义是什么？",
+   "answer": "会聚",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "会聚"
+   ]
+  },
+  {
+   "id": 98,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 lounge 的释义是什么？",
+   "answer": "休息室",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "休息室"
+   ]
+  },
+  {
+   "id": 99,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 brilliant 的释义是什么？",
+   "answer": "明亮的",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "明亮的"
+   ]
+  },
+  {
+   "id": 100,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 incidentally 的释义是什么？",
+   "answer": "顺便提一句",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "顺便提一句"
+   ]
+  },
+  {
+   "id": 101,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 surplus 的释义是什么？",
+   "answer": "盈余",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "盈余"
+   ]
+  },
+  {
+   "id": 102,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 implicit 的释义是什么？",
+   "answer": "含蓄的",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "含蓄的"
+   ]
+  },
+  {
+   "id": 103,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 leather 的释义是什么？",
+   "answer": "皮革",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "皮革"
+   ]
+  },
+  {
+   "id": 104,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 slice 的释义是什么？",
+   "answer": "片",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "片"
+   ]
+  },
+  {
+   "id": 105,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 ritual 的释义是什么？",
+   "answer": "仪式",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "仪式"
+   ]
+  },
+  {
+   "id": 106,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 contrive 的释义是什么？",
+   "answer": "设法做到",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "设法做到"
+   ]
+  },
+  {
+   "id": 107,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 intact 的释义是什么？",
+   "answer": "完整的",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "完整的"
+   ]
+  },
+  {
+   "id": 108,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 donate 的释义是什么？",
+   "answer": "捐赠",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "捐赠"
+   ]
+  },
+  {
+   "id": 109,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 prose 的释义是什么？",
+   "answer": "散文",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "散文"
+   ]
+  },
+  {
+   "id": 110,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 questionnaire 的释义是什么？",
+   "answer": "问卷调查",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "问卷调查"
+   ]
+  },
+  {
+   "id": 111,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 ancestor 的释义是什么？",
+   "answer": "祖宗",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "祖宗"
+   ]
+  },
+  {
+   "id": 112,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 drawback 的释义是什么？",
+   "answer": "缺点",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "缺点"
+   ]
+  },
+  {
+   "id": 113,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 formula 的释义是什么？",
+   "answer": "公式",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "公式"
+   ]
+  },
+  {
+   "id": 114,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 deem 的释义是什么？",
+   "answer": "认为",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "认为"
+   ]
+  },
+  {
+   "id": 115,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 ambiguous 的释义是什么？",
+   "answer": "模棱两可的",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "模棱两可的"
+   ]
+  },
+  {
+   "id": 116,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 speculate 的释义是什么？",
+   "answer": "推测",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "推测"
+   ]
+  },
+  {
+   "id": 117,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 handicraft 的释义是什么？",
+   "answer": "手工艺品",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "手工艺品"
+   ]
+  },
+  {
+   "id": 118,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 motive 的释义是什么？",
+   "answer": "动机",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "动机"
+   ]
+  },
+  {
+   "id": 119,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 merge 的释义是什么？",
+   "answer": "合并",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "合并"
+   ]
+  },
+  {
+   "id": 120,
+   "category": "vocab",
+   "query": "四六级核心词汇中，单词 default 的释义是什么？",
+   "answer": "违约",
+   "doc_keys": [
+    "六级核心单词"
+   ],
+   "keywords": [
+    "违约"
+   ]
+  },
+  {
+   "id": 121,
+   "category": "translation",
+   "query": "“剪纸”的正确英文翻译是什么？",
+   "answer": "paper-cutting",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "paper-cutting"
+   ]
+  },
+  {
+   "id": 122,
+   "category": "translation",
+   "query": "“刺绣”的正确英文翻译是什么？",
+   "answer": "embroidery",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "embroidery"
+   ]
+  },
+  {
+   "id": 123,
+   "category": "translation",
+   "query": "“瓷器”的正确英文翻译是什么？",
+   "answer": "porcelain",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "porcelain"
+   ]
+  },
+  {
+   "id": 124,
+   "category": "translation",
+   "query": "“丝绸之路”的正确英文翻译是什么？",
+   "answer": "the Silk Road",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "the Silk Road"
+   ]
+  },
+  {
+   "id": 125,
+   "category": "translation",
+   "query": "“中医”的正确英文翻译是什么？",
+   "answer": "traditional Chinese medicine",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "traditional Chinese medicine"
+   ]
+  },
+  {
+   "id": 126,
+   "category": "translation",
+   "query": "“针灸”的正确英文翻译是什么？",
+   "answer": "acupuncture",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "acupuncture"
+   ]
+  },
+  {
+   "id": 127,
+   "category": "translation",
+   "query": "“端午节”的正确英文翻译是什么？",
+   "answer": "the Dragon Boat Festival",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "the Dragon Boat Festival"
+   ]
+  },
+  {
+   "id": 128,
+   "category": "translation",
+   "query": "“故宫”的正确英文翻译是什么？",
+   "answer": "the Palace Museum",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "the Palace Museum"
+   ]
+  },
+  {
+   "id": 129,
+   "category": "translation",
+   "query": "“儒家思想”的正确英文翻译是什么？",
+   "answer": "Confucianism",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "Confucianism"
+   ]
+  },
+  {
+   "id": 130,
+   "category": "translation",
+   "query": "“水墨画”的正确英文翻译是什么？",
+   "answer": "ink wash painting",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "ink wash painting"
+   ]
+  },
+  {
+   "id": 131,
+   "category": "translation",
+   "query": "“京剧”的正确英文翻译是什么？",
+   "answer": "Peking Opera",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "Peking Opera"
+   ]
+  },
+  {
+   "id": 132,
+   "category": "translation",
+   "query": "“活字印刷”的正确英文翻译是什么？",
+   "answer": "movable-type printing",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "movable-type printing"
+   ]
+  },
+  {
+   "id": 133,
+   "category": "translation",
+   "query": "“非物质文化遗产”的正确英文翻译是什么？",
+   "answer": "Intangible Cultural Heritage",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "Intangible Cultural Heritage"
+   ]
+  },
+  {
+   "id": 134,
+   "category": "translation",
+   "query": "“人口老龄化”的正确英文翻译是什么？",
+   "answer": "population aging",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "population aging"
+   ]
+  },
+  {
+   "id": 135,
+   "category": "translation",
+   "query": "“脱贫攻坚”的正确英文翻译是什么？",
+   "answer": "poverty alleviation",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "poverty alleviation"
+   ]
+  },
+  {
+   "id": 136,
+   "category": "translation",
+   "query": "“乡村振兴”的正确英文翻译是什么？",
+   "answer": "rural revitalization",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "rural revitalization"
+   ]
+  },
+  {
+   "id": 137,
+   "category": "translation",
+   "query": "“全民健身”的正确英文翻译是什么？",
+   "answer": "national fitness campaign",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "national fitness campaign"
+   ]
+  },
+  {
+   "id": 138,
+   "category": "translation",
+   "query": "“快递”的正确英文翻译是什么？",
+   "answer": "express delivery",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "express delivery"
+   ]
+  },
+  {
+   "id": 139,
+   "category": "translation",
+   "query": "“直播电商”的正确英文翻译是什么？",
+   "answer": "live-streaming e-commerce",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "live-streaming e-commerce"
+   ]
+  },
+  {
+   "id": 140,
+   "category": "translation",
+   "query": "“志愿服务”的正确英文翻译是什么？",
+   "answer": "volunteer service",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "volunteer service"
+   ]
+  },
+  {
+   "id": 141,
+   "category": "translation",
+   "query": "“城乡一体化”的正确英文翻译是什么？",
+   "answer": "urban-rural integration",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "urban-rural integration"
+   ]
+  },
+  {
+   "id": 142,
+   "category": "translation",
+   "query": "“人工智能”的正确英文翻译是什么？",
+   "answer": "artificial intelligence (AI)",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "artificial intelligence (AI)"
+   ]
+  },
+  {
+   "id": 143,
+   "category": "translation",
+   "query": "“大数据”的正确英文翻译是什么？",
+   "answer": "big data",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "big data"
+   ]
+  },
+  {
+   "id": 144,
+   "category": "translation",
+   "query": "“高铁”的正确英文翻译是什么？",
+   "answer": "high-speed rail",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "high-speed rail"
+   ]
+  },
+  {
+   "id": 145,
+   "category": "translation",
+   "query": "“移动支付”的正确英文翻译是什么？",
+   "answer": "mobile payment",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "mobile payment"
+   ]
+  },
+  {
+   "id": 146,
+   "category": "translation",
+   "query": "“新能源”的正确英文翻译是什么？",
+   "answer": "new energy",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "new energy"
+   ]
+  },
+  {
+   "id": 147,
+   "category": "translation",
+   "query": "“航天技术”的正确英文翻译是什么？",
+   "answer": "aerospace technology",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "aerospace technology"
+   ]
+  },
+  {
+   "id": 148,
+   "category": "translation",
+   "query": "“人脸识别”的正确英文翻译是什么？",
+   "answer": "facial recognition",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "facial recognition"
+   ]
+  },
+  {
+   "id": 149,
+   "category": "translation",
+   "query": "“素质教育”的正确英文翻译是什么？",
+   "answer": "quality-oriented education",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "quality-oriented education"
+   ]
+  },
+  {
+   "id": 150,
+   "category": "translation",
+   "query": "“线上教育”的正确英文翻译是什么？",
+   "answer": "online education",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "online education"
+   ]
+  },
+  {
+   "id": 151,
+   "category": "translation",
+   "query": "“义务教育”的正确英文翻译是什么？",
+   "answer": "compulsory education",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "compulsory education"
+   ]
+  },
+  {
+   "id": 152,
+   "category": "translation",
+   "query": "“终身学习”的正确英文翻译是什么？",
+   "answer": "lifelong learning",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "lifelong learning"
+   ]
+  },
+  {
+   "id": 153,
+   "category": "translation",
+   "query": "“职业教育”的正确英文翻译是什么？",
+   "answer": "vocational education",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "vocational education"
+   ]
+  },
+  {
+   "id": 154,
+   "category": "translation",
+   "query": "“美育”的正确英文翻译是什么？",
+   "answer": "aesthetic education",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "aesthetic education"
+   ]
+  },
+  {
+   "id": 155,
+   "category": "translation",
+   "query": "“数字经济”的正确英文翻译是什么？",
+   "answer": "digital economy",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "digital economy"
+   ]
+  },
+  {
+   "id": 156,
+   "category": "translation",
+   "query": "“一带一路”的正确英文翻译是什么？",
+   "answer": "the Belt and Road Initiative",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "the Belt and Road Initiative"
+   ]
+  },
+  {
+   "id": 157,
+   "category": "translation",
+   "query": "“小微企业”的正确英文翻译是什么？",
+   "answer": "small and micro enterprises",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "small and micro enterprises"
+   ]
+  },
+  {
+   "id": 158,
+   "category": "translation",
+   "query": "“自贸区”的正确英文翻译是什么？",
+   "answer": "free trade zone",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "free trade zone"
+   ]
+  },
+  {
+   "id": 159,
+   "category": "translation",
+   "query": "“国货”的正确英文翻译是什么？",
+   "answer": "domestic brands",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "domestic brands"
+   ]
+  },
+  {
+   "id": 160,
+   "category": "translation",
+   "query": "“跨境电商”的正确英文翻译是什么？",
+   "answer": "cross-border e-commerce",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "cross-border e-commerce"
+   ]
+  },
+  {
+   "id": 161,
+   "category": "translation",
+   "query": "“碳中和”的正确英文翻译是什么？",
+   "answer": "carbon neutrality",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "carbon neutrality"
+   ]
+  },
+  {
+   "id": 162,
+   "category": "translation",
+   "query": "“垃圾分类”的正确英文翻译是什么？",
+   "answer": "garbage classification",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "garbage classification"
+   ]
+  },
+  {
+   "id": 163,
+   "category": "translation",
+   "query": "“清洁能源”的正确英文翻译是什么？",
+   "answer": "clean energy",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "clean energy"
+   ]
+  },
+  {
+   "id": 164,
+   "category": "translation",
+   "query": "“绿水青山”的正确英文翻译是什么？",
+   "answer": "lucid waters and lush mountains",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "lucid waters and lush mountains"
+   ]
+  },
+  {
+   "id": 165,
+   "category": "translation",
+   "query": "“低碳生活”的正确英文翻译是什么？",
+   "answer": "low-carbon life",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "low-carbon life"
+   ]
+  },
+  {
+   "id": 166,
+   "category": "translation",
+   "query": "“生物多样性”的正确英文翻译是什么？",
+   "answer": "biodiversity",
+   "doc_keys": [
+    "翻译分话题高频词汇对照表"
+   ],
+   "keywords": [
+    "biodiversity"
+   ]
+  },
+  {
+   "id": 167,
+   "category": "translation",
+   "query": "四六级翻译中「paper cut（剪纸）」的正确英文表达是什么？",
+   "answer": "paper-cutting",
+   "doc_keys": [
+    "翻译高频扣分"
+   ],
+   "keywords": [
+    "paper-cutting"
+   ]
+  },
+  {
+   "id": 168,
+   "category": "translation",
+   "query": "四六级翻译中「spring festival（节日首字母必须大写）」的正确英文表达是什么？",
+   "answer": "the Spring Festival",
+   "doc_keys": [
+    "翻译高频扣分"
+   ],
+   "keywords": [
+    "the Spring Festival"
+   ]
+  },
+  {
+   "id": 169,
+   "category": "translation",
+   "query": "四六级翻译中「no material culture heritage」的正确英文表达是什么？",
+   "answer": "Intangible Cultural Heritage",
+   "doc_keys": [
+    "翻译高频扣分"
+   ],
+   "keywords": [
+    "Intangible Cultural Heritage"
+   ]
+  },
+  {
+   "id": 170,
+   "category": "translation",
+   "query": "四六级翻译中「China people」的正确英文表达是什么？",
+   "answer": "Chinese people / People in China",
+   "doc_keys": [
+    "翻译高频扣分"
+   ],
+   "keywords": [
+    "Chinese people / People in China"
+   ]
+  },
+  {
+   "id": 171,
+   "category": "translation",
+   "query": "四六级翻译中「emperor king（皇帝）」的正确英文表达是什么？",
+   "answer": "emperor",
+   "doc_keys": [
+    "翻译高频扣分"
+   ],
+   "keywords": [
+    "emperor"
+   ]
+  },
+  {
+   "id": 172,
+   "category": "translation",
+   "query": "四六级翻译中「develop culture」的正确英文表达是什么？",
+   "answer": "inherit /promote culture",
+   "doc_keys": [
+    "翻译高频扣分"
+   ],
+   "keywords": [
+    "inherit /promote culture"
+   ]
+  },
+  {
+   "id": 173,
+   "category": "translation",
+   "query": "四六级翻译中「do pollution reduction」的正确英文表达是什么？",
+   "answer": "cut carbon emissions",
+   "doc_keys": [
+    "翻译高频扣分"
+   ],
+   "keywords": [
+    "cut carbon emissions"
+   ]
+  },
+  {
+   "id": 174,
+   "category": "translation",
+   "query": "四六级翻译中「cheap price」的正确英文表达是什么？",
+   "answer": "low price",
+   "doc_keys": [
+    "翻译高频扣分"
+   ],
+   "keywords": [
+    "low price"
+   ]
+  },
+  {
+   "id": 175,
+   "category": "translation",
+   "query": "四六级翻译中「improve awareness」的正确英文表达是什么？",
+   "answer": "raise awareness",
+   "doc_keys": [
+    "翻译高频扣分"
+   ],
+   "keywords": [
+    "raise awareness"
+   ]
+  },
+  {
+   "id": 176,
+   "category": "translation",
+   "query": "四六级翻译中「Silk Road」的正确英文表达是什么？",
+   "answer": "the Silk Road",
+   "doc_keys": [
+    "翻译高频扣分"
+   ],
+   "keywords": [
+    "the Silk Road"
+   ]
+  },
+  {
+   "id": 177,
+   "category": "translation",
+   "query": "翻译中“有着数千年悠久历史”对应的英文表达是什么？",
+   "answer": "has a long history of thousands of years.",
+   "doc_keys": [
+    "翻译万能固定句式"
+   ],
+   "keywords": [
+    "has a long history of thousands of years"
+   ]
+  },
+  {
+   "id": 178,
+   "category": "translation",
+   "query": "翻译中“是中华传统文化不可或缺的一部分”对应的英文表达是什么？",
+   "answer": "is an indispensable part of traditional Chinese culture.",
+   "doc_keys": [
+    "翻译万能固定句式"
+   ],
+   "keywords": [
+    "is an indispensable part of traditional Chinese culture"
+   ]
+  },
+  {
+   "id": 179,
+   "category": "translation",
+   "query": "翻译中“在百姓日常生活中扮演重要角色”对应的英文表达是什么？",
+   "answer": "plays a vital role in ordinary people’s daily lives.",
+   "doc_keys": [
+    "翻译万能固定句式"
+   ],
+   "keywords": [
+    "plays a vital role in ordinary people’s daily lives"
+   ]
+  },
+  {
+   "id": 180,
+   "category": "translation",
+   "query": "翻译中“承载着中国人对美好生活的期许”对应的英文表达是什么？",
+   "answer": "carries Chinese people’s yearning for a better life.",
+   "doc_keys": [
+    "翻译万能固定句式"
+   ],
+   "keywords": [
+    "carries Chinese people’s yearning for a better life"
+   ]
+  },
+  {
+   "id": 181,
+   "category": "translation",
+   "query": "翻译中“近十年来，…… 飞速发展”对应的英文表达是什么？",
+   "answer": "Over the past decade, … has developed at a rapid pace.",
+   "doc_keys": [
+    "翻译万能固定句式"
+   ],
+   "keywords": [
+    "Over the past decade, … has developed at a rapid pace"
+   ]
+  },
+  {
+   "id": 182,
+   "category": "translation",
+   "query": "翻译中“随着科技进步，…… 发生巨大变革”对应的英文表达是什么？",
+   "answer": "With the advancement of science and technology, … has undergone tremendous changes.",
+   "doc_keys": [
+    "翻译万能固定句式"
+   ],
+   "keywords": [
+    "With the advancement of science and technology, … has undergone tremendous changes"
+   ]
+  },
+  {
+   "id": 183,
+   "category": "translation",
+   "query": "翻译中“的普及彻底改变了人们的生活方式”对应的英文表达是什么？",
+   "answer": "The popularity of … has completely transformed people’s lifestyle.",
+   "doc_keys": [
+    "翻译万能固定句式"
+   ],
+   "keywords": [
+    "The popularity of … has completely transformed people’s lifestyle"
+   ]
+  },
+  {
+   "id": 184,
+   "category": "translation",
+   "query": "翻译中“国家出台多项政策大力扶持……”对应的英文表达是什么？",
+   "answer": "The government has released a series of policies to strongly support ….",
+   "doc_keys": [
+    "翻译万能固定句式"
+   ],
+   "keywords": [
+    "The government has released a series of policies to strongly support"
+   ]
+  },
+  {
+   "id": 185,
+   "category": "translation",
+   "query": "翻译中“越来越多年轻人开始重视传统文化传承”对应的英文表达是什么？",
+   "answer": "An increasing number of young people attach importance to inheriting traditional culture.",
+   "doc_keys": [
+    "翻译万能固定句式"
+   ],
+   "keywords": [
+    "An increasing number of young people attach importance to inheriting traditional culture"
+   ]
+  },
+  {
+   "id": 186,
+   "category": "translation",
+   "query": "翻译中“全社会共同参与，推进…… 可持续发展”对应的英文表达是什么？",
+   "answer": "The whole society participates together to promote the sustainable development of ….",
+   "doc_keys": [
+    "翻译万能固定句式"
+   ],
+   "keywords": [
+    "The whole society participates together to promote the sustainable development of"
+   ]
+  },
+  {
+   "id": 187,
+   "category": "writing",
+   "query": "写作中 think 有哪些高分替换表达？",
+   "answer": "maintain / argue / hold the view that / claim",
+   "doc_keys": [
+    "高低级词汇替换"
+   ],
+   "keywords": [
+    "maintain / argue / hold the view that / claim"
+   ]
+  },
+  {
+   "id": 188,
+   "category": "writing",
+   "query": "写作中 important 有哪些高分替换表达？",
+   "answer": "vital / indispensable / of great significance / crucial",
+   "doc_keys": [
+    "高低级词汇替换"
+   ],
+   "keywords": [
+    "vital / indispensable / of great significance / crucial"
+   ]
+  },
+  {
+   "id": 189,
+   "category": "writing",
+   "query": "写作中 many 有哪些高分替换表达？",
+   "answer": "a considerable number of / numerous / a host of",
+   "doc_keys": [
+    "高低级词汇替换"
+   ],
+   "keywords": [
+    "a considerable number of / numerous / a host of"
+   ]
+  },
+  {
+   "id": 190,
+   "category": "writing",
+   "query": "写作中 very 有哪些高分替换表达？",
+   "answer": "extremely / remarkably / extraordinarily / exceedingly",
+   "doc_keys": [
+    "高低级词汇替换"
+   ],
+   "keywords": [
+    "extremely / remarkably / extraordinarily / exceedingly"
+   ]
+  },
+  {
+   "id": 191,
+   "category": "writing",
+   "query": "写作中 good 有哪些高分替换表达？",
+   "answer": "beneficial / rewarding / positive / favorable",
+   "doc_keys": [
+    "高低级词汇替换"
+   ],
+   "keywords": [
+    "beneficial / rewarding / positive / favorable"
+   ]
+  },
+  {
+   "id": 192,
+   "category": "writing",
+   "query": "写作中 bad 有哪些高分替换表达？",
+   "answer": "adverse / undesirable / negative / problematic",
+   "doc_keys": [
+    "高低级词汇替换"
+   ],
+   "keywords": [
+    "adverse / undesirable / negative / problematic"
+   ]
+  },
+  {
+   "id": 193,
+   "category": "writing",
+   "query": "写作中 people 有哪些高分替换表达？",
+   "answer": "individuals / the public / ordinary citizens / the masses",
+   "doc_keys": [
+    "高低级词汇替换"
+   ],
+   "keywords": [
+    "individuals / the public / ordinary citizens / the masses"
+   ]
+  },
+  {
+   "id": 194,
+   "category": "writing",
+   "query": "写作中 but 有哪些高分替换表达？",
+   "answer": "nevertheless / on the contrary / whereas / conversely",
+   "doc_keys": [
+    "高低级词汇替换"
+   ],
+   "keywords": [
+    "nevertheless / on the contrary / whereas / conversely"
+   ]
+  },
+  {
+   "id": 195,
+   "category": "writing",
+   "query": "写作中 so 有哪些高分替换表达？",
+   "answer": "consequently / accordingly / as a result / hence",
+   "doc_keys": [
+    "高低级词汇替换"
+   ],
+   "keywords": [
+    "consequently / accordingly / as a result / hence"
+   ]
+  },
+  {
+   "id": 196,
+   "category": "writing",
+   "query": "写作中 solve 有哪些高分替换表达？",
+   "answer": "address / tackle / cope with / resolve",
+   "doc_keys": [
+    "高低级词汇替换"
+   ],
+   "keywords": [
+    "address / tackle / cope with / resolve"
+   ]
+  },
+  {
+   "id": 197,
+   "category": "writing",
+   "query": "写作中 increase 有哪些高分替换表达？",
+   "answer": "witness a sharp rise / surge / climb steadily",
+   "doc_keys": [
+    "高低级词汇替换"
+   ],
+   "keywords": [
+    "witness a sharp rise / surge / climb steadily"
+   ]
+  },
+  {
+   "id": 198,
+   "category": "writing",
+   "query": "写作中 decrease 有哪些高分替换表达？",
+   "answer": "decline gradually / drop dramatically / shrink",
+   "doc_keys": [
+    "高低级词汇替换"
+   ],
+   "keywords": [
+    "decline gradually / drop dramatically / shrink"
+   ]
+  },
+  {
+   "id": 199,
+   "category": "writing",
+   "query": "四级建议信的开头套句是什么？",
+   "answer": "I hope my proposals will be taken into consideration.",
+   "doc_keys": [
+    "四级应用文"
+   ],
+   "keywords": [
+    "I hope my proposals will be taken into consideration"
+   ]
+  },
+  {
+   "id": 200,
+   "category": "writing",
+   "query": "四级感谢信的开头套句是什么？",
+   "answer": "I am writing to express my sincere gratitude for your generous help.",
+   "doc_keys": [
+    "四级应用文"
+   ],
+   "keywords": [
+    "I am writing to express my sincere gratitude for your generous help"
+   ]
+  },
+  {
+   "id": 201,
+   "category": "writing",
+   "query": "四级道歉信的开头套句是什么？",
+   "answer": "The unexpected reason is that I had to deal with an urgent personal matter suddenly.",
+   "doc_keys": [
+    "四级应用文"
+   ],
+   "keywords": [
+    "The unexpected reason is that I had to deal with an urgent personal matter suddenly"
+   ]
+  },
+  {
+   "id": 202,
+   "category": "writing",
+   "query": "四级投诉信的开头套句是什么？",
+   "answer": "For one thing, the product I bought has obvious functional defects.",
+   "doc_keys": [
+    "四级应用文"
+   ],
+   "keywords": [
+    "For one thing, the product I bought has obvious functional defects"
+   ]
+  },
+  {
+   "id": 203,
+   "category": "writing",
+   "query": "四级求职信的开头套句是什么？",
+   "answer": "I am proficient in oral English and skilled in office software operation.",
+   "doc_keys": [
+    "四级应用文"
+   ],
+   "keywords": [
+    "I am proficient in oral English and skilled in office software operation"
+   ]
+  },
+  {
+   "id": 204,
+   "category": "writing",
+   "query": "四级祝贺信的开头套句是什么？",
+   "answer": "I am writing to extend my sincerest congratulations on your remarkable achievement.",
+   "doc_keys": [
+    "四级应用文"
+   ],
+   "keywords": [
+    "I am writing to extend my sincerest congratulations on your remarkable achievement"
+   ]
+  },
+  {
+   "id": 205,
+   "category": "writing",
+   "query": "四级通知的开头套句是什么？",
+   "answer": "All students who are interested are welcome to take part in this event.",
+   "doc_keys": [
+    "四级应用文"
+   ],
+   "keywords": [
+    "All students who are interested are welcome to take part in this event"
+   ]
+  },
+  {
+   "id": 206,
+   "category": "writing",
+   "query": "四级邀请信的开头套句是什么？",
+   "answer": "We would greatly appreciate your presence and valuable advice.",
+   "doc_keys": [
+    "四级应用文"
+   ],
+   "keywords": [
+    "We would greatly appreciate your presence and valuable advice"
+   ]
+  },
+  {
+   "id": 207,
+   "category": "writing",
+   "query": "六级议论文“现象解释型”结构的开头句式是什么？",
+   "answer": "Nowadays, there is a growing widespread concern over the phenomenon that \\_\\_\\_\\_\\_\\_\\_\\_.",
+   "doc_keys": [
+    "六级议论文"
+   ],
+   "keywords": [
+    "Nowadays, there is a growing widespread concern over the phenomenon that \\_\\_\\_\\_\\_\\_\\_\\_"
+   ]
+  },
+  {
+   "id": 208,
+   "category": "writing",
+   "query": "六级议论文“观点对比型”结构的开头句式是什么？",
+   "answer": "Nowadays, people have conflicting views on whether \\_\\_\\_\\_\\_\\_\\_\\_.",
+   "doc_keys": [
+    "六级议论文"
+   ],
+   "keywords": [
+    "Nowadays, people have conflicting views on whether \\_\\_\\_\\_\\_\\_\\_\\_"
+   ]
+  },
+  {
+   "id": 209,
+   "category": "writing",
+   "query": "六级议论文“问题解决型”结构的开头句式是什么？",
+   "answer": "Nowadays, the problem of \\_\\_\\_\\_\\_\\_\\_\\_ has become increasingly serious in daily life.",
+   "doc_keys": [
+    "六级议论文"
+   ],
+   "keywords": [
+    "Nowadays, the problem of \\_\\_\\_\\_\\_\\_\\_\\_ has become increasingly serious in daily life"
+   ]
+  },
+  {
+   "id": 210,
+   "category": "writing",
+   "query": "四六级作文「开头引入句」的常用句式是什么？",
+   "answer": "Nowadays, the issue of ... has aroused widespread public concern.",
+   "doc_keys": [
+    "高分万能句式"
+   ],
+   "keywords": [
+    "Nowadays, the issue of ... has aroused widespread public concern"
+   ]
+  },
+  {
+   "id": 211,
+   "category": "writing",
+   "query": "四六级作文「原因分析句」的常用句式是什么？",
+   "answer": "There are numerous reasons responsible for this phenomenon, and the following are the most typical ones.",
+   "doc_keys": [
+    "高分万能句式"
+   ],
+   "keywords": [
+    "There are numerous reasons responsible for this phenomenon, and the following are the most typical ones"
+   ]
+  },
+  {
+   "id": 212,
+   "category": "writing",
+   "query": "四六级作文「对策建议句」的常用句式是什么？",
+   "answer": "Effective measures should be taken immediately to deal with this problem.",
+   "doc_keys": [
+    "高分万能句式"
+   ],
+   "keywords": [
+    "Effective measures should be taken immediately to deal with this problem"
+   ]
+  },
+  {
+   "id": 213,
+   "category": "writing",
+   "query": "四六级作文「对比转折句」的常用句式是什么？",
+   "answer": "Nevertheless, every coin has two sides, and this trend also brings inevitable drawbacks.",
+   "doc_keys": [
+    "高分万能句式"
+   ],
+   "keywords": [
+    "Nevertheless, every coin has two sides, and this trend also brings inevitable drawbacks"
+   ]
+  },
+  {
+   "id": 214,
+   "category": "writing",
+   "query": "四六级作文「结尾升华句」的常用句式是什么？",
+   "answer": "Only in this way can we make steady progress in the long run.",
+   "doc_keys": [
+    "高分万能句式"
+   ],
+   "keywords": [
+    "Only in this way can we make steady progress in the long run"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+  "meta": {
+    "name": "四六级知识库检索命中率评测集",
+    "version": 1,
+    "n_questions": 40,
+    "top_k_eval": [1, 3, 5],
+    "hit_definition": {
+      "doc@k": "正确来源文档出现在 top-k chunk 的 document_name 中（文档级召回率，主口径）",
+      "kw@k": "标准答案关键词出现在 top-k chunk 内容中（答案级命中率，辅助口径）"
+    },
+    "note": "题目与答案均取自 数据集/ 目录下真实文档；doc_keys 是文档名中稳定可匹配的片段，用于对抗上传时文件重命名。"
+  },
+  "questions": [
+    {"id": 1, "category": "vocab", "query": "四六级核心词汇中，单词 resort 的释义是什么？", "answer": "求助", "doc_keys": ["四级核心单词", "六级核心单词", "四级词汇完整版", "六级词汇完整版", "六级-高频词汇"], "keywords": ["求助"]},
+    {"id": 2, "category": "vocab", "query": "四六级核心词汇中，单词 identical 的释义是什么？", "answer": "完全相同的", "doc_keys": ["四级核心单词", "六级核心单词", "四级词汇完整版", "六级词汇完整版"], "keywords": ["完全相同"]},
+    {"id": 3, "category": "vocab", "query": "四六级核心词汇中，单词 mutual 的释义是什么？", "answer": "相互的", "doc_keys": ["四级核心单词", "六级核心单词", "四级词汇完整版", "六级词汇完整版"], "keywords": ["相互"]},
+    {"id": 4, "category": "vocab", "query": "四六级核心词汇中，单词 tender 的释义是什么？", "answer": "柔软的", "doc_keys": ["四级核心单词", "四级词汇完整版", "六级词汇完整版"], "keywords": ["柔软"]},
+    {"id": 5, "category": "vocab", "query": "四六级核心词汇中，单词 beam 的释义是什么？", "answer": "光线", "doc_keys": ["四级核心单词", "六级核心单词", "四级词汇完整版", "六级词汇完整版"], "keywords": ["光线"]},
+    {"id": 6, "category": "vocab", "query": "四六级核心词汇中，单词 transaction 的释义是什么？", "answer": "交易", "doc_keys": ["四级核心单词", "六级核心单词", "六级词汇完整版", "六级-高频词汇"], "keywords": ["交易"]},
+    {"id": 7, "category": "vocab", "query": "四六级核心词汇中，单词 reluctant 的释义是什么？", "answer": "不情愿的", "doc_keys": ["四级核心单词", "六级核心单词", "四级词汇完整版", "六级词汇完整版"], "keywords": ["不情愿"]},
+    {"id": 8, "category": "vocab", "query": "四六级核心词汇中，单词 immune 的释义是什么？", "answer": "有免疫力", "doc_keys": ["四级核心单词", "六级核心单词", "六级词汇完整版"], "keywords": ["免疫力"]},
+    {"id": 9, "category": "vocab", "query": "四六级核心词汇中，单词 isolate 的释义是什么？", "answer": "隔离", "doc_keys": ["四级核心单词", "六级核心单词", "四级词汇完整版", "六级词汇完整版", "六级-高频词汇"], "keywords": ["隔离"]},
+    {"id": 10, "category": "vocab", "query": "四六级核心词汇中，单词 snack 的释义是什么？", "answer": "点心", "doc_keys": ["四级核心单词", "六级核心单词", "六级词汇完整版"], "keywords": ["点心"]},
+
+    {"id": 11, "category": "grammar", "query": "虚拟语气表示与现在事实相反的虚拟条件句时，从句和主句的谓语分别用什么形式？", "answer": "从句用一般过去时，主句用 would + 动词原形", "doc_keys": ["虚拟语气"], "keywords": ["一般过去时", "would"]},
+    {"id": 12, "category": "grammar", "query": "suggest、demand 这类表示建议/命令/要求的动词引导宾语从句时，谓语动词用什么形式？", "answer": "should + 动词原形，should 可以省略", "doc_keys": ["虚拟语气"], "keywords": ["should", "动词原形"]},
+    {"id": 13, "category": "grammar", "query": "英语中单个形容词作定语修饰名词时，一般放在名词前面还是后面？这种定语叫什么？", "answer": "放在名词前，叫前置定语", "doc_keys": ["定语从句"], "keywords": ["前置定语"]},
+    {"id": 14, "category": "grammar", "query": "英语倒装句的主要目的是什么？", "answer": "为了强调、突出等目的而颠倒正常语序", "doc_keys": ["倒装"], "keywords": ["强调"]},
+    {"id": 15, "category": "grammar", "query": "非谓语动词加上什么助动词可以构成谓语动词？讲解里用了什么比喻？", "answer": "加上助动词；用“结婚证”比喻助动词", "doc_keys": ["句子时态"], "keywords": ["结婚证"]},
+    {"id": 16, "category": "grammar", "query": "主谓一致由哪三个原则支配？", "answer": "语法一致原则、意义一致原则、就近原则", "doc_keys": ["主谓一致"], "keywords": ["就近原则"]},
+    {"id": 17, "category": "grammar", "query": "people、police 这类集体名词作主语时，谓语动词用单数还是复数？", "answer": "只当复数看待，谓语动词必须用复数", "doc_keys": ["主谓一致"], "keywords": ["必须用复数"]},
+    {"id": 18, "category": "grammar", "query": "非谓语动词主要有哪三种形式？", "answer": "不定式、分词（现在分词/过去分词）、动名词", "doc_keys": ["非谓语动词"], "keywords": ["不定式", "动名词"]},
+
+    {"id": 19, "category": "translation", "query": "翻译中“……有着数千年悠久历史”常用的英文表达是什么？", "answer": "...has a long history of thousands of years.", "doc_keys": ["翻译万能固定句式"], "keywords": ["has a long history"]},
+    {"id": 20, "category": "translation", "query": "“……是中华传统文化不可或缺的一部分”怎么翻译？", "answer": "...is an indispensable part of traditional Chinese culture.", "doc_keys": ["翻译万能固定句式"], "keywords": ["indispensable part"]},
+    {"id": 21, "category": "translation", "query": "“随着科技进步，……发生巨大变革”对应的英文表达是什么？", "answer": "With the advancement of science and technology, ... has undergone tremendous changes.", "doc_keys": ["翻译万能固定句式"], "keywords": ["advancement of science and technology"]},
+    {"id": 22, "category": "translation", "query": "四六级翻译满分多少分、分几档？采分权重怎么分配？", "answer": "满分15分、分5档；核心术语准确60%、语法句式流畅30%、逻辑连贯10%", "doc_keys": ["翻译阅卷评分细则"], "keywords": ["核心术语", "语法句式"]},
+    {"id": 23, "category": "translation", "query": "“剪纸”的正确英文翻译是什么？", "answer": "paper-cutting", "doc_keys": ["翻译高频扣分"], "keywords": ["paper-cutting"]},
+    {"id": 24, "category": "translation", "query": "“提高意识”的正确英文搭配是什么？", "answer": "raise awareness", "doc_keys": ["翻译高频扣分"], "keywords": ["raise awareness"]},
+    {"id": 25, "category": "translation", "query": "翻译“春节”时 spring 和 festival 为什么必须大写？", "answer": "节日名称首字母必须大写，应写 the Spring Festival", "doc_keys": ["翻译高频扣分"], "keywords": ["Spring Festival"]},
+
+    {"id": 26, "category": "writing", "query": "四级作文满分多少分、共分为几档？", "answer": "满分15分，共五档", "doc_keys": ["作文官方评分细则"], "keywords": ["五档"]},
+    {"id": 27, "category": "writing", "query": "四级作文字数建议多少词？低于多少词会扣分？", "answer": "建议120–180词，低于100词酌情扣分", "doc_keys": ["作文官方评分细则"], "keywords": ["酌情扣分"]},
+    {"id": 28, "category": "writing", "query": "六级作文建议字数是多少？字数不足会怎样？", "answer": "建议150–200词，字数不足会扣除对应档次分数", "doc_keys": ["作文官方评分细则"], "keywords": ["字数不足"]},
+    {"id": 29, "category": "writing", "query": "作文中抄袭题干原文超过一半会怎么判？", "answer": "直接判定低分档", "doc_keys": ["作文官方评分细则"], "keywords": ["抄袭"]},
+    {"id": 30, "category": "writing", "query": "四级建议信的开头套句是什么？", "answer": "I am writing to offer several practical suggestions on ...", "doc_keys": ["四级应用文"], "keywords": ["I am writing to offer"]},
+    {"id": 31, "category": "writing", "query": "感谢信中“我写信是想表达我诚挚的感谢”英文怎么说？", "answer": "I am writing to express my sincere gratitude for ...", "doc_keys": ["四级应用文"], "keywords": ["sincere gratitude"]},
+    {"id": 32, "category": "writing", "query": "important 有哪些高分替换词？", "answer": "vital / indispensable / of great significance / crucial", "doc_keys": ["高低级词汇替换"], "keywords": ["indispensable", "crucial"]},
+    {"id": 33, "category": "writing", "query": "think 有哪些高级替换表达？", "answer": "maintain / argue / hold the view that / claim", "doc_keys": ["高低级词汇替换"], "keywords": ["hold the view"]},
+    {"id": 34, "category": "writing", "query": "六级议论文“现象解释型”结构的开头句式是什么？", "answer": "Nowadays, there is a growing widespread concern over the phenomenon that ...", "doc_keys": ["六级议论文"], "keywords": ["growing widespread concern"]},
+    {"id": 35, "category": "writing", "query": "六级议论文“观点对比型”结构的开头句式是什么？", "answer": "Nowadays, people have conflicting views on whether ...", "doc_keys": ["六级议论文"], "keywords": ["conflicting views"]},
+
+    {"id": 36, "category": "exam_rules", "query": "艾宾浩斯错题抗遗忘复习的复盘节点分别是第几天？", "answer": "第1天、第3天、第7天、第15天（四轮，完成D15后归档）", "doc_keys": ["艾宾浩斯"], "keywords": ["第1天", "第15天"]},
+    {"id": 37, "category": "exam_rules", "query": "错题的错因四大分类标签是什么？", "answer": "词汇短板、语法短板、做题方法短板、粗心失误", "doc_keys": ["艾宾浩斯"], "keywords": ["词汇短板", "粗心失误"]},
+    {"id": 38, "category": "exam_rules", "query": "三阶段备考规划中“刷题强化阶段”要做什么？", "answer": "每周2–3套完整真题限时模考，逐题订正、错题归类归档", "doc_keys": ["艾宾浩斯"], "keywords": ["限时模考"]},
+    {"id": 39, "category": "exam_rules", "query": "四级考试总分多少？写作和翻译各占多少分？", "answer": "总分710分；写作和翻译各占15%、各106.5分", "doc_keys": ["四六级官方考试规范"], "keywords": ["710", "106.5"]},
+    {"id": 40, "category": "exam_rules", "query": "四六级考试的合格参考分数线是多少？", "answer": "425分", "doc_keys": ["四六级官方考试规范"], "keywords": ["425"]}
+  ]
+}

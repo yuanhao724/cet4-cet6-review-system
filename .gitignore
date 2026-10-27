@@ -1,0 +1,11 @@
+# 运行产物与缓存（不提交到开源仓库）
+__pycache__/
+*.pyc
+*.npy
+eval/output/
+eval/output200/
+eval/output_ablation/
+
+# 本地临时与隐私文件
+.codex_tmp/
+简历修改/
